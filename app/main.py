@@ -18,18 +18,18 @@ def read_root():
     <body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen font-sans">
         
         <div class="bg-gray-800 p-10 rounded-2xl shadow-2xl border border-gray-700 max-w-lg text-center transform transition-all hover:scale-105">
-            <div class="text-6xl mb-6">YO</div>
+            <div class="text-6xl mb-6">YES</div>
             <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-4">
                 ITS WORKING
             </h1>
             <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-            GIT OPS
+            SZYMON
             </p>
             
             <div class="space-y-4">
                 <button onclick="document.getElementById('secret').classList.remove('hidden')" 
                         class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-6 rounded-xl transition duration-300">
-                    123
+                    CLICK
                 </button>
                 <p id="secret" class="hidden text-green-400 font-mono mt-4 p-4 bg-gray-900 rounded-lg border border-green-800">
                     secret
