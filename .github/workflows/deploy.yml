@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout repo
+              uses: actions/checkout@v4
+            - name: configure aws credentials via OIDC
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: arn:aws:iam::391359250012:role/GitHubActionsDeployRole
+                aws-region: eu-north-1
+            
+            - name: set up python
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.13'
+            
+            - name: package python app
+              run: |
+                cd app
+                pip install -r requirements.txt -t
+                zip -r ../terraform/api.zip .
+            
+            - name: setup terraform
+              uses: hashicorp/setup-terraform@v3
+              with:
+                terraform-version: "1.10.0"
+            
+            - name: terraform init & apply
+              working-directory: ./terraform
+              run: |
+                terraform init
+                terraform apply -auto-approve
+
